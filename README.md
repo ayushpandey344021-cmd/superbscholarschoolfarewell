@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Superb Scholar School — Class 10 Farewell 2026
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A frontend-only website built with **React 19 (Create React App + CRACO)**, **Tailwind CSS**, **Framer Motion** and **Lenis**.
+No backend, database, login or API keys are required.
 
-## Available Scripts
+## Project layout (this folder is the project root)
+```
+package.json        # scripts: start / build (CRACO)
+craco.config.js     # CRA config overrides (path alias "@/..." -> src/)
+tailwind.config.js  # theme (cream / ink / gold)
+vercel.json         # Vercel build settings + security headers
+public/index.html   # HTML entry (root element: <div id="root">)
+public/photos/      # gallery photos
+public/school-logo.png
+src/index.js        # React entry point
+src/App.js          # page composition
+src/components/     # Hero, Journey, Gallery, Teachers, Friendship, NamesWall, LastDay, Finale, MusicToggle ...
+src/hooks/useYouTubeMusic.js  # background song (YouTube IFrame API)
+```
 
-In the project directory, you can run:
+## Run locally
+```bash
+yarn install
+yarn start      # http://localhost:3000
+yarn build      # production output -> ./build
+```
 
-### `npm start`
+## Deploy on Vercel (exact settings)
+| Setting            | Value                                  |
+|--------------------|----------------------------------------|
+| Root Directory     | `./` (leave EMPTY — project is at root) |
+| Framework Preset   | Create React App                       |
+| Install Command    | `yarn install --frozen-lockfile`       |
+| Build Command      | `yarn build`                           |
+| Output Directory   | `build`                                |
+| Environment Vars   | none required                          |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+These values are already declared in `vercel.json`, so the defaults work. Steps:
+1. Push this folder to a GitHub repository (the `.gitignore` already excludes `node_modules`, `build`, `.env*`).
+2. On vercel.com → **Add New Project** → import the repo → keep Root Directory empty → **Deploy**.
+3. Alternatively drag-and-drop this unzipped folder on the Vercel dashboard.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> The earlier error `Could not find a required file: index.html — Searched in: /vercel/path0` happened because the
+> project was nested inside a `frontend/` sub-folder. In this package the project sits at the root, so `public/index.html`
+> is found automatically.
 
-### `npm test`
+## Privacy & security
+- No API keys, tokens or passwords exist in this project. `.env` files are git-ignored; `.env.example` holds placeholders only.
+- Any `REACT_APP_*` variable is public (compiled into the browser bundle) — never store secrets there.
+- `vercel.json` sets security headers (nosniff, SAMEORIGIN, strict referrer policy, Permissions-Policy, HSTS).
+- No analytics or third-party tracking is included. External requests: Google Fonts and the YouTube player only.
+- The site collects no personal data and has no forms.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Background music
+"Tere Jaisa Yaar Kahan" (YouTube video `9dcBy2uXL7E`) is played via the official YouTube IFrame Player API and loops forever.
+Browsers block sound before the first user gesture, so it starts on the first tap/click anywhere on the page.
+To change the song, edit `SONG.videoId` in `src/hooks/useYouTubeMusic.js` (the video must allow embedding).
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Photos
+Add images to `public/photos/` and list them in `GALLERY_ITEMS` in `src/components/Gallery.jsx`.

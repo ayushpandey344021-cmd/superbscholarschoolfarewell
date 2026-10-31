@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 42 60% 97%;
+        --foreground: 24 45% 14%;
+        --card: 0 0% 100%;
+        --card-foreground: 24 45% 14%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 24 45% 14%;
+        --primary: 40 65% 42%;
+        --primary-foreground: 42 60% 97%;
+        --secondary: 40 45% 92%;
+        --secondary-foreground: 24 45% 14%;
+        --muted: 40 40% 93%;
+        --muted-foreground: 25 20% 40%;
+        --accent: 40 65% 42%;
+        --accent-foreground: 42 60% 97%;
+        --destructive: 0 62.8% 40%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 40 45% 42% / 0.22;
+        --input: 40 40% 88%;
+        --ring: 40 65% 42%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    html {
+        scroll-behavior: auto;
+        overflow-x: clip;
+    }
+    body {
+        @apply bg-cream text-foreground font-sans antialiased;
+        overflow-x: clip;
+    }
+    ::selection {
+        background: rgba(163, 117, 42, 0.3);
+        color: #2b1c08;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f7f1e3;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #cdb583;
+        border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a3752a;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
+
+@layer utilities {
+    .text-glow-gold {
+        text-shadow: 0 0 22px rgba(163, 117, 42, 0.4), 0 0 60px rgba(163, 117, 42, 0.16);
+    }
+    .grain-overlay {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+    }
+    .gold-frame-inner {
+        background:
+            radial-gradient(ellipse at 30% 20%, rgba(201, 162, 75, 0.14), transparent 60%),
+            radial-gradient(ellipse at 75% 85%, rgba(163, 117, 42, 0.12), transparent 55%),
+            linear-gradient(160deg, #fffdf6 0%, #faf4e6 55%, #f5ecd8 100%);
+    }
+    .paper-texture {
+        background-image:
+            radial-gradient(ellipse at 20% 10%, rgba(201, 162, 75, 0.06), transparent 50%),
+            radial-gradient(ellipse at 85% 90%, rgba(163, 117, 42, 0.05), transparent 50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-float,
+    .animate-pulse-glow,
+    .animate-shimmer {
+        animation: none;
+    }
+}
